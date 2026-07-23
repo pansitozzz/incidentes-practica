@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Sistema de Priorización de Incidentes{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'incidentes/css/estilos.css' %}">
+</head>
+<body>
+    <header class="cabecera">
+        <div class="contenedor">
+            <a href="{% url 'dashboard' %}" class="logo">Priorización de Incidentes</a>
+            <nav>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'lista_incidentes' %}">Incidentes</a>
+                <a href="{% url 'reporte_resumen_pdf' %}">Reporte PDF</a>
+            </nav>
+        </div>
+    </header>
+    <main class="contenedor">
+        {% block contenido %}{% endblock %}
+    </main>
+    <footer class="pie">
+        <div class="contenedor">
+            <p>Proyecto de práctica &mdash; datos ficticios.</p>
+        </div>
+    </footer>
+</body>
+</html>

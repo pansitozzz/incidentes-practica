@@ -1,0 +1,43 @@
+{% extends "incidentes/base.html" %}
+
+{% block titulo %}{{ incidente.titulo }}{% endblock %}
+
+{% block contenido %}
+<h1>{{ incidente.titulo }}</h1>
+
+<p><a href="{% url 'lista_incidentes' %}">&larr; Volver a la lista</a></p>
+
+<dl class="detalle">
+    <dt>Empresa</dt>
+    <dd>{{ incidente.empresa.nombre }}</dd>
+
+    <dt>Activo</dt>
+    <dd>{{ incidente.activo|default:"No especificado" }}</dd>
+
+    <dt>Prioridad</dt>
+    <dd>{{ incidente.get_prioridad_display }}</dd>
+
+    <dt>Estado</dt>
+    <dd>{{ incidente.get_estado_display }}</dd>
+
+    <dt>Técnico asignado</dt>
+    <dd>{{ incidente.tecnico_asignado.nombre|default:"Sin asignar" }}</dd>
+
+    <dt>Fecha de reporte</dt>
+    <dd>{{ incidente.fecha_reporte }}</dd>
+
+    <dt>Fecha de resolución</dt>
+    <dd>{{ incidente.fecha_resolucion|default:"Aún no resuelto" }}</dd>
+
+    <dt>Horas abierto</dt>
+    <dd>{{ incidente.horas_abierto }}</dd>
+
+    <dt>Score de priorización</dt>
+    <dd>{{ incidente.score }}</dd>
+
+    <dt>Descripción</dt>
+    <dd>{{ incidente.descripcion|default:"Sin descripción." }}</dd>
+</dl>
+
+<p><a href="{% url 'reporte_incidente_pdf' incidente.pk %}">Descargar reporte en PDF</a></p>
+{% endblock %}

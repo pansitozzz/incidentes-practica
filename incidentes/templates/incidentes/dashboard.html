@@ -1,0 +1,44 @@
+{% extends "incidentes/base.html" %}
+{% load static %}
+
+{% block titulo %}Dashboard{% endblock %}
+
+{% block contenido %}
+<h1>Dashboard de incidentes</h1>
+
+<section class="tarjetas">
+    <div class="tarjeta">
+        <span class="tarjeta-numero">{{ total_incidentes }}</span>
+        <span class="tarjeta-etiqueta">Total de incidentes</span>
+    </div>
+    <div class="tarjeta">
+        <span class="tarjeta-numero">{{ abiertos }}</span>
+        <span class="tarjeta-etiqueta">Abiertos / en progreso</span>
+    </div>
+    <div class="tarjeta">
+        <span class="tarjeta-numero">{{ resueltos }}</span>
+        <span class="tarjeta-etiqueta">Resueltos / cerrados</span>
+    </div>
+</section>
+
+<section class="graficos">
+    <div class="grafico-caja">
+        <h2>Incidentes por prioridad</h2>
+        <canvas id="graficoPrioridad"></canvas>
+    </div>
+    <div class="grafico-caja">
+        <h2>Incidentes por estado</h2>
+        <canvas id="graficoEstado"></canvas>
+    </div>
+</section>
+
+<section class="tarjetas">
+    <div class="tarjeta" id="tarjeta-tiempo-promedio">
+        <span class="tarjeta-numero" id="valorTiempoPromedio">--</span>
+        <span class="tarjeta-etiqueta">Horas promedio de resolución</span>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="{% static 'incidentes/js/dashboard.js' %}"></script>
+{% endblock %}

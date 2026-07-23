@@ -1,0 +1,38 @@
+{% extends "incidentes/base.html" %}
+
+{% block titulo %}Incidentes{% endblock %}
+
+{% block contenido %}
+<h1>Incidentes ordenados por prioridad</h1>
+
+<table class="tabla">
+    <thead>
+        <tr>
+            <th>Score</th>
+            <th>Prioridad</th>
+            <th>Título</th>
+            <th>Empresa</th>
+            <th>Estado</th>
+            <th>Técnico</th>
+            <th>Horas abierto</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for incidente in incidentes %}
+        <tr>
+            <td>{{ incidente.score }}</td>
+            <td><span class="etiqueta etiqueta-{{ incidente.prioridad|lower }}">{{ incidente.get_prioridad_display }}</span></td>
+            <td>{{ incidente.titulo }}</td>
+            <td>{{ incidente.empresa.nombre }}</td>
+            <td>{{ incidente.get_estado_display }}</td>
+            <td>{{ incidente.tecnico_asignado.nombre|default:"Sin asignar" }}</td>
+            <td>{{ incidente.horas_abierto }}</td>
+            <td><a href="{% url 'detalle_incidente' incidente.pk %}">Ver</a></td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8">No hay incidentes registrados todavía. Ejecuta el comando de datos demo.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

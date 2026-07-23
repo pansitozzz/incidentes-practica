@@ -1,0 +1,145 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f6f8;
+    color: #222;
+}
+
+.contenedor {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.cabecera {
+    background: #1f2937;
+    color: #fff;
+    padding: 14px 0;
+}
+
+.cabecera .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecera .logo {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.cabecera nav a {
+    color: #d1d5db;
+    text-decoration: none;
+    margin-left: 18px;
+}
+
+.cabecera nav a:hover {
+    color: #fff;
+}
+
+main.contenedor {
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tarjeta {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 150px;
+}
+
+.tarjeta-numero {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.tarjeta-etiqueta {
+    color: #666;
+    font-size: 13px;
+}
+
+.graficos {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.grafico-caja {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tabla th, .tabla td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 14px;
+}
+
+.tabla th {
+    background: #f0f1f3;
+}
+
+.etiqueta {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.etiqueta-p1 { background: #dc2626; }
+.etiqueta-p2 { background: #ea580c; }
+.etiqueta-p3 { background: #ca8a04; }
+.etiqueta-p4 { background: #16a34a; }
+
+.detalle {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.detalle dt {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.detalle dd {
+    margin-left: 0;
+    color: #444;
+}
+
+.pie {
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    padding: 20px 0;
+}
