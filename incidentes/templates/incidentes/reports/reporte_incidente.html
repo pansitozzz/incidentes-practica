@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de incidente #{{ incidente.pk }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 12px; color: #222; }
+        h1 { font-size: 18px; margin-bottom: 4px; }
+        .subtitulo { color: #666; margin-top: 0; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        td, th { padding: 6px 8px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { width: 30%; background: #f4f4f4; }
+        .pie { margin-top: 30px; font-size: 10px; color: #999; }
+    </style>
+</head>
+<body>
+    <h1>Reporte de incidente #{{ incidente.pk }}</h1>
+    <p class="subtitulo">{{ incidente.titulo }}</p>
+
+    <table>
+        <tr><th>Empresa</th><td>{{ incidente.empresa.nombre }}</td></tr>
+        <tr><th>Activo</th><td>{{ incidente.activo|default:"No especificado" }}</td></tr>
+        <tr><th>Prioridad</th><td>{{ incidente.get_prioridad_display }}</td></tr>
+        <tr><th>Estado</th><td>{{ incidente.get_estado_display }}</td></tr>
+        <tr><th>Técnico asignado</th><td>{{ incidente.tecnico_asignado.nombre|default:"Sin asignar" }}</td></tr>
+        <tr><th>Fecha de reporte</th><td>{{ incidente.fecha_reporte }}</td></tr>
+        <tr><th>Fecha de resolución</th><td>{{ incidente.fecha_resolucion|default:"Aún no resuelto" }}</td></tr>
+        <tr><th>Horas abierto</th><td>{{ incidente.horas_abierto }}</td></tr>
+        <tr><th>Score de priorización</th><td>{{ incidente.score }}</td></tr>
+        <tr><th>Descripción</th><td>{{ incidente.descripcion|default:"Sin descripción." }}</td></tr>
+    </table>
+
+    <p class="pie">Generado el {{ generado_en }} &mdash; datos ficticios de práctica.</p>
+</body>
+</html>
