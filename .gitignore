@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+ENV/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+/static_root/
+
+# Variables de entorno / secretos
+.env
+.env.*
+!.env.example
+
+# Docker
+*.pid
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Tests / cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Reportes generados
+reportes_generados/
