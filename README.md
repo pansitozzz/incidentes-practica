@@ -85,7 +85,3 @@ python manage.py createsuperuser --noinput
 ```bash
 pytest
 ```
-
-## Capturas de pantalla
-
-Pendiente: voy a agregar capturas del dashboard y del listado de incidentes más adelante.
