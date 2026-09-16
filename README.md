@@ -1,87 +1,93 @@
 # Sistema de priorización de incidentes técnicos
 
-Aplicación web en Django que registra incidentes técnicos y los ordena automáticamente por urgencia, combinando prioridad, tiempo abierto y contrato SLA del cliente.
+Aplicación web en Django para registrar incidentes técnicos y ordenarlos automáticamente según urgencia, tiempo abierto y condiciones de SLA.
 
-## Problema que resuelve / contexto
+## Contexto
 
-Este es un proyecto de práctica personal, inspirado en un problema real que se da en cualquier área de soporte técnico: cuando hay varios incidentes abiertos a la vez, no siempre es obvio cuál atender primero. Un ticket de baja prioridad que lleva tres días abierto puede ser más urgente que uno crítico recién reportado.
+Proyecto de portafolio inspirado en un problema frecuente de soporte técnico: cuando existen múltiples incidentes abiertos, la prioridad declarada no siempre refleja cuál requiere atención inmediata. El sistema incorpora reglas de negocio para facilitar una atención ordenada y trazable.
 
-Lo construí para practicar Django con un caso de uso completo (modelos relacionados, lógica de negocio simple, dashboard, generación de reportes en PDF) y para tener algo mostrable en mi portafolio. Todos los datos (empresa, técnicos, incidentes) son ficticios y se generan con un comando de siembra; no corresponden a ningún cliente ni empresa real.
+Todos los datos incluidos son ficticios y se generan únicamente con fines de demostración.
+
+## Funcionalidades principales
+
+- Registro y gestión de incidentes técnicos.
+- Priorización automática considerando prioridad, antigüedad y SLA.
+- Dashboard con indicadores operativos.
+- Generación de reportes en PDF.
+- Datos de demostración mediante comando de siembra.
+- Configuración para PostgreSQL con Docker o SQLite en desarrollo local.
+- Pruebas automatizadas con pytest y pytest-django.
 
 ## Stack tecnológico
 
+- Python
 - Django 5.x
-- PostgreSQL (vía Docker) / SQLite (para desarrollo local sin Docker)
-- Docker y docker-compose
-- WeasyPrint (generación de reportes en PDF)
-- Chart.js (gráficos del dashboard, vía CDN)
-- pytest / pytest-django (tests)
+- PostgreSQL / SQLite
+- Docker y Docker Compose
+- WeasyPrint
+- Chart.js
+- pytest / pytest-django
 
-## Cómo correrlo localmente
+## Ejecución local
 
-### 1. Clonar y configurar variables de entorno
+### 1. Clonar y configurar
 
 ```bash
-git clone <url-del-repo>
+git clone https://github.com/pansitozzz/incidentes-practica.git
 cd incidentes-practica
 cp .env.example .env
 ```
 
-Edita `.env` y genera tu propio `SECRET_KEY`:
+Para generar una clave segura de Django:
 
 ```bash
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
 
-### 2. Opción A: sin Docker (SQLite)
+### 2. Desarrollo local con SQLite
 
-Con `USE_SQLITE=True` en tu `.env` (valor por defecto), no necesitas Postgres ni Docker.
+Con `USE_SQLITE=True` en `.env`:
 
 ```bash
 python -m venv venv
-venv\Scripts\activate          # en Windows
-# source venv/bin/activate     # en Linux/Mac
+
+# Windows
+venv\Scripts\activate
+
+# Linux / macOS
+# source venv/bin/activate
 
 pip install -r requirements.txt
-
 python manage.py migrate
-python manage.py seed_demo     # carga los datos de demostración ficticios
+python manage.py seed_demo
 python manage.py runserver
 ```
 
-Nota: la generación de PDF con WeasyPrint depende de librerías nativas (Pango/Cairo/GTK) que en Windows requieren una instalación aparte. Si solo vas a probar el dashboard y el listado de incidentes, SQLite sin Docker es suficiente; para probar los reportes en PDF se recomienda la opción con Docker.
+### 3. Ejecución con PostgreSQL y Docker
 
-### 3. Opción B: con Docker (PostgreSQL)
-
-Cambia `USE_SQLITE=False` en tu `.env` y define las credenciales de Postgres que prefieras.
+Configurar `USE_SQLITE=False` y las credenciales de PostgreSQL en `.env`, luego ejecutar:
 
 ```bash
 docker-compose up --build
 ```
 
-En otra terminal, dentro del contenedor:
+En otra terminal:
 
 ```bash
 docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py seed_demo
 ```
 
-La app queda disponible en `http://localhost:8000`.
+La aplicación queda disponible en `http://localhost:8000`.
 
-### 4. Crear un superusuario
+> La generación de PDF con WeasyPrint requiere dependencias nativas adicionales en algunos entornos. La configuración con Docker facilita su ejecución.
 
-El superusuario nunca se crea con contraseña hardcodeada. Dos formas de hacerlo:
-
-```bash
-# Interactiva (recomendada)
-python manage.py createsuperuser
-
-# O definiendo DJANGO_SUPERUSER_* en tu .env y usando --noinput
-python manage.py createsuperuser --noinput
-```
-
-### 5. Correr los tests
+## Pruebas
 
 ```bash
 pytest
 ```
+
+## Privacidad
+
+Este repositorio es una versión demostrativa e independiente. No contiene información confidencial, nombres reales de clientes ni datos de producción.
